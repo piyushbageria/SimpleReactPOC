@@ -1,0 +1,24 @@
+{
+  "name": "simplereactpoc",
+  "version": "0.0.1",
+  "description": "Playing around with react",
+  "main": "index.html",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AdarshNiket/SimpleReactPOC.git"
+  },
+  "author": "Globant",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AdarshNiket/SimpleReactPOC/issues"
+  },
+  "homepage": "https://github.com/AdarshNiket/SimpleReactPOC#readme",
+  "dependencies": {
+    "babel": "^6.0.15",
+    "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "react": "^0.14.1",
+    "react-bootstrap-grid": "^1.0.0"
+  }
+}
