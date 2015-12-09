@@ -1,6 +1,12 @@
-'use strict';
+var React = require('react');
+var ReactDOM  = require('react-dom');
 
-var component = require('./component.js');
+var Greeting = require('./greeting');
 
+var App = React.createClass({
+  render() {
+    return <Greeting/>;
+  }
+});
 
-document.body.appendChild(component());
+ReactDOM.render(<App />, document.body);
