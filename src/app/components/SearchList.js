@@ -1,41 +1,40 @@
 var React = require('react');
 
-var SearchList = React.createClass({
+var SearchResultStore = require('./../flux/ResultStore');
+var Dispatcher = require('./../flux/Dispatcher');
+var SearchAction = require('./../flux/Action');
 
-  getInitialState: function(){
-    this.origialList = [
-      {name:'John'},
-      {name:'Jane'},
-      {name:'Peter'},
-      {name:'Liz'},
-      {name:'Serena'},
-      {name:'Tim'},
-      {name:'Robert'},
-      ];
-
-    return {list:this.origialList}
-  },
+var SearchInput = React.createClass({
   onChange:function(){
     var val = this.refs.input.value;
-    console.log(this.state.list);
-    var filteredList = this.origialList.filter(function(elem){
-      if(elem.name.toLowerCase().match(val.toLowerCase())){
-        return true;
-      }
-      else {
-        return false;
-      }
-    });
+    SearchAction.searchString = val;
+    Dispatcher.dispatchAction(SearchAction);
+  },
+  
+  render:function(){
+    return (
+      <span>
+      <input type="text" onChange={this.onChange} ref="input"/>
+      <button>Clear</button>
+      </span>);
+  }
+});
 
-    this.setState({
-      list:filteredList
-    });
+var SearchList = React.createClass({
+  getInitialState: function(){
+    return {list:SearchResultStore.getList()}
+  },
 
+  componentDidMount:function(){
+    var self = this;
+    SearchResultStore.onChange(function () {
+      self.setState({list:SearchResultStore.getList()});
+    });
   },
   render:function() {
     return (
       <div>
-      <input type="text" onChange={this.onChange} ref="input"/>
+      <SearchInput/>
       <SearchResult list={this.state.list}/>
       </div>
     );
