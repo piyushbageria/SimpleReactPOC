@@ -21,6 +21,11 @@ module.exports = {
           loader: "file?name=[name].[ext]",
         },
         {
+          test: /\.json$/,
+          exclude: /node_modules/,
+          loader: "json-loader",
+        },
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           loader: 'babel',
